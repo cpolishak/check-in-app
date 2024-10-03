@@ -161,14 +161,17 @@ const History = () => {
                 }
                 label={item.username}
               />
-              {isCheckedFamily[item.username] ? (
+              {isCheckedFamily[item.username] ? ( 
+                <>                
+                <Typography sx={{ pl: 5 }}>Which family members?</Typography>
                 <TextField
                   error={textInputs[item.username] === ''}
-                  sx={{ padding: 0 }}
+                  sx={{ padding: 0, marginLeft: 4 }}
                   onChange={(e) => handleChange(e, item.username)}
                   value={textInputs[item.username] || ""}
                   label="Required"
                 ></TextField>
+                </>
               ) : (
                 ""
               )}

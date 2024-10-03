@@ -5,7 +5,7 @@ A quickly built self check in app
 
 ## Things it would need to have
 
-### select patient (if haven't before now)
+### Select patient (if haven't before now)
 - or checking in for patient (ex: a kid)
 
 ### Current info
@@ -13,20 +13,20 @@ A quickly built self check in app
 - Email
 - Emergency Contacts
 
-### verification of insurance page
+### Verification of insurance page
 - select insurance on file
 - or enter new insurance
 
-### patient history 
+### Patient history 
 - do you have any of the following conditions
 - do you have a family history of these conditions
    - which family member if so
 
-### selecting pharmacy
+### Selecting pharmacy
 - choose on file or add new
 - probably needs maps integration (googleAPI)
 
-### summary page - confirmation of details 
+### Summary page - confirmation of details 
 - have list of main details
 
 ### Testing for all kinds of stuff
