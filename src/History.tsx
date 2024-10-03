@@ -17,7 +17,9 @@ const History = () => {
 
   const [fetchedData, setFetchedData] = useState<User[]>([]);
   const [ailmentsData, setAilmentsData] = useState<User[]>([]);
-  const [isCheckedAilments, setIsCheckedAilments] = useState<{ [key: string]: boolean }>({});
+  const [isCheckedAilments, setIsCheckedAilments] = useState<{
+    [key: string]: boolean;
+  }>({});
   const [isCheckedFamily, setIsCheckedFamily] = useState<{
     [key: string]: boolean;
   }>({});
@@ -82,27 +84,7 @@ const History = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const checkedAilments = Object.keys(isCheckedAilments)
-    .filter((name) => isCheckedAilments[name])
-    .map((name) => ({
-      issue: name,
-    }));
-
-    const checkedItemsFamily = Object.keys(isCheckedFamily)
-      .filter((name) => isCheckedFamily[name])
-      .map((name) => ({
-        issue: name,
-        familyMember: textInputs[name] || "",
-      }));
-    
-    console.log("Submitted the following Ailments: ", checkedAilments);
-    console.log("Submitted the following Family info: ", checkedItemsFamily);
-    // Ideally would submit via an API call to pass along the necessary data
-  };
-
+  // Could be broken out into it's own component
   const list = (data: User[]) => {
     return (
       // Would need to be in a form to submit user's selected items
@@ -130,11 +112,13 @@ const History = () => {
     );
   };
 
+  // Could be broken into it's own component
   const familyList = (data: User[]) => {
-
     const isAnyTextFieldEmpty = () => {
       return Object.keys(isCheckedFamily).some(
-        (username) => isCheckedFamily[username] && (!textInputs[username] || textInputs[username].length < 1)
+        (username) =>
+          isCheckedFamily[username] &&
+          (!textInputs[username] || textInputs[username].length < 1)
       );
     };
 
@@ -161,16 +145,16 @@ const History = () => {
                 }
                 label={item.username}
               />
-              {isCheckedFamily[item.username] ? ( 
-                <>                
-                <Typography sx={{ pl: 5 }}>Which family members?</Typography>
-                <TextField
-                  error={textInputs[item.username] === ''}
-                  sx={{ padding: 0, marginLeft: 4 }}
-                  onChange={(e) => handleChange(e, item.username)}
-                  value={textInputs[item.username] || ""}
-                  label="Required"
-                ></TextField>
+              {isCheckedFamily[item.username] ? (
+                <>
+                  <Typography sx={{ pl: 5 }}>Which family members?</Typography>
+                  <TextField
+                    error={textInputs[item.username] === ""}
+                    sx={{ padding: 0, marginLeft: 4 }}
+                    onChange={(e) => handleChange(e, item.username)}
+                    value={textInputs[item.username] || ""}
+                    label="Required"
+                  ></TextField>
                 </>
               ) : (
                 ""
@@ -178,11 +162,49 @@ const History = () => {
             </div>
           ))}
         </FormGroup>
-        <Button type="submit" disabled={isAnyTextFieldEmpty()} variant="contained">
+        <Button
+          type="submit"
+          disabled={isAnyTextFieldEmpty()}
+          variant="contained"
+        >
           Save
         </Button>
       </form>
     );
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const checkedAilments = Object.keys(isCheckedAilments)
+      .filter((name) => isCheckedAilments[name])
+      .map((name) => ({
+        issue: name,
+      }));
+
+    const checkedItemsFamily = Object.keys(isCheckedFamily)
+      .filter((name) => isCheckedFamily[name])
+      .map((name) => ({
+        issue: name,
+        familyMember: textInputs[name] || "",
+      }));
+
+    console.log("Submitted the following Ailments: ", checkedAilments);
+    console.log("Submitted the following Family info: ", checkedItemsFamily);
+
+    // Ideally would submit via an API call to pass along the necessary data
+    // postDataToBE() - Could set up a fetch like below
+      // const requestOptions = {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ formData }),
+      // };
+      // try {
+      //   const response = await fetch("https://backendOfApp/forms/${formData}", requestOptions);
+      //   const data = await response.json();
+      // } catch(error) {
+      //   console.error("Error: ", error)
+      // }
   };
 
   useEffect(() => {
@@ -191,7 +213,7 @@ const History = () => {
   }, []);
 
   return (
-    <Box p={4} sx={{ backgroundColor: "#cce4ec"}}>
+    <Box p={4} sx={{ backgroundColor: "#cce4ec" }}>
       <Typography variant="h2">Ailments and Family History</Typography>
       <hr />
       <Typography variant="h5" pt={4}>
