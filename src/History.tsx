@@ -188,20 +188,20 @@ const History = () => {
   }, []);
 
   return (
-    <Box p={4}>
+    <Box p={4} sx={{ backgroundColor: "#cce4ec"}}>
       <Typography variant="h2">Ailments and Family History</Typography>
       <hr />
       <Typography variant="h5" pt={4}>
         Do you have (or have you had) any of the following issues: (Yes, these
         are names instead of conditions)
       </Typography>
-      <Card sx={{ p: 2, backgroundColor: "lightgrey", m: 2, my: 4 }}>
+      <Card sx={{ p: 2, backgroundColor: "#f1faff", m: 2, my: 4 }}>
         {list(ailmentsData)}
       </Card>
       <Typography variant="h5">
         Do you have a family history of any of the following?:
       </Typography>
-      <Card sx={{ p: 2, backgroundColor: "lightgrey", m: 2, my: 4 }}>
+      <Card sx={{ p: 2, backgroundColor: "#f1faff", m: 2, my: 4 }}>
         {familyList(fetchedData)}
       </Card>
     </Box>

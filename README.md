@@ -1,6 +1,8 @@
 # Self Check in app
 A quickly built self check in app
 
+![image](src/media/check-in-app.png)
+
 ## Things it would need to have
 
 ### select patient (if haven't before now)
@@ -19,7 +21,6 @@ A quickly built self check in app
 - do you have any of the following conditions
 - do you have a family history of these conditions
    - which family member if so
-- 
 
 ### selecting pharmacy
 - choose on file or add new
