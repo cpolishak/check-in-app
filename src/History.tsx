@@ -35,7 +35,7 @@ const History = () => {
       console.log(data.data);
       setAilmentsData(data.data);
     } catch (error) {
-      console.log("Error: ", error);
+      console.error("Error: ", error);
     }
   };
 
@@ -48,7 +48,7 @@ const History = () => {
       // console.log(data);
       setFetchedData(data);
     } catch (error) {
-      console.log("Error: ", error);
+      console.error("Error: ", error);
     }
   };
 
@@ -105,7 +105,7 @@ const History = () => {
             />
           ))}
         </FormGroup>
-        <Button type="submit" variant="contained">
+        <Button type="submit" aria-label="save" variant="contained">
           Save
         </Button>
       </form>
@@ -154,6 +154,7 @@ const History = () => {
                     onChange={(e) => handleChange(e, item.username)}
                     value={textInputs[item.username] || ""}
                     label="Required"
+                    size="small"
                   ></TextField>
                 </>
               ) : (
@@ -164,6 +165,7 @@ const History = () => {
         </FormGroup>
         <Button
           type="submit"
+          aria-label="save"
           disabled={isAnyTextFieldEmpty()}
           variant="contained"
         >
